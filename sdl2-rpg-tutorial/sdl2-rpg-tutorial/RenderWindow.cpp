@@ -46,7 +46,22 @@ void RenderWindow::clear() {
 // Preconditions: Game is running
 // Postconditions: A portion of the texture has been copied to the current rendering target (in this case the renderer obj)
 void RenderWindow::render(SDL_Texture* p_tex) {
-    SDL_RenderCopy(renderer, p_tex, NULL, NULL);
+    
+    // src represents the actual size we want for the texture
+    
+    SDL_Rect src;
+    src.x = 0;
+    src.y = 0;
+    src.w = 32;
+    src.h = 32;
+    
+    SDL_Rect dest;
+    dest.x = 0;
+    dest.y = 0;
+    dest.w = 32;
+    dest.h = 32;
+    
+    SDL_RenderCopy(renderer, p_tex, &src, &dest);
 }
 
 // display
