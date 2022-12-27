@@ -2,6 +2,7 @@
 #include <SDL2_image/SDL_image.h>
 #include <iostream>
 #include "RenderWindow.hpp"
+#include "Entity.hpp"
 
 int main(int argc, char* args[]) {
     
@@ -22,6 +23,9 @@ int main(int argc, char* args[]) {
     //SDL_Texture* grassTexture = window.loadTexture("res/gfx/ground_grass_1.png");
     SDL_Texture* grassTexture = window.loadTexture("ground_grass_1.png");
     
+    // creating entities
+    Entity platform0(100, 300, grassTexture);
+    
     // gameRunning: bool flag to determine if game is still running
     // event: SDL_Event obj that determines value of gameRunning
     bool gameRunning = true;
@@ -36,7 +40,7 @@ int main(int argc, char* args[]) {
         
         // While game is running, clear window, render texture, and display it
         window.clear();
-        window.render(grassTexture);
+        window.render(platform0);
         window.display();
     }
     

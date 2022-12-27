@@ -2,6 +2,8 @@
 #include <SDL2/SDL.h>
 #include <SDL2_image/SDL_image.h>
 
+#include "Entity.hpp"
+
 class RenderWindow {
 public:
     // Constructor
@@ -17,7 +19,7 @@ public:
     void clear();
     
     // Renders texture
-    void render(SDL_Texture* p_tex);
+    void render(Entity& p_entity);
     
     // Updates screen
     void display();

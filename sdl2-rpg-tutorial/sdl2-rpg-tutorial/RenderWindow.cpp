@@ -2,6 +2,7 @@
 #include <SDL2_image/SDL_image.h>
 #include <iostream>
 #include "RenderWindow.hpp"
+#include "Entity.hpp"
 
 // RenderWindow constructor
 // Preconditions: SDL has no problems initializing
@@ -45,23 +46,23 @@ void RenderWindow::clear() {
 // render
 // Preconditions: Game is running
 // Postconditions: A portion of the texture has been copied to the current rendering target (in this case the renderer obj)
-void RenderWindow::render(SDL_Texture* p_tex) {
+void RenderWindow::render(Entity& p_entity) {
     
     // src represents the actual size we want for the texture
     
     SDL_Rect src;
-    src.x = 0;
-    src.y = 0;
-    src.w = 32;
-    src.h = 32;
+    src.x = p_entity.getCurrentFrame().x;
+    src.y = p_entity.getCurrentFrame().y;
+    src.w = p_entity.getCurrentFrame().w;
+    src.h = p_entity.getCurrentFrame().h;
     
     SDL_Rect dest;
-    dest.x = 0;
-    dest.y = 0;
-    dest.w = 32;
-    dest.h = 32;
+    dest.x = p_entity.getX();
+    dest.y = p_entity.getY();
+    dest.w = p_entity.getCurrentFrame().w * 4;
+    dest.h = p_entity.getCurrentFrame().h * 4;
     
-    SDL_RenderCopy(renderer, p_tex, &src, &dest);
+    SDL_RenderCopy(renderer, p_entity.getTexture(), &src, &dest);
 }
 
 // display
